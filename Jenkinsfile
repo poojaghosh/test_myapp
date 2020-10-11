@@ -31,7 +31,7 @@ pipeline {
 			}
 		}	
 		stage('Push Docker image') {
-		agent { label 'master' }
+		//agent { label 'master' }
 		 steps {
 			withCredentials([string(credentialsId: 'DockerHub', variable: 'dockerHub')]) {
             sh "docker login -u chika1984 -p ${dockerHub}"
