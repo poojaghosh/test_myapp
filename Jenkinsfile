@@ -1,6 +1,4 @@
-environment {
-  def dockerRun = "docker run -p 8080:8080 -d --name myapp chika1984/myapp:4.0.0"
-  }
+def dockerRun = "docker run -p 8080:8080 -d --name myapp chika1984/myapp:4.0.0"
 pipeline {
   agent any
   tools {
@@ -41,7 +39,7 @@ pipeline {
 			sh 'docker push chika1984/myapp:4.0.0'
 		} 	
 		}
-         stage('Run Docker image on Stage') {
+         stages('Run Docker image on Stage') {
 		 agent { label 'staging' }
 		 steps {
 		 //def dockerRun = 'docker run -p 8080:8080 -d --name myapp chika1984/myapp:4.0.0'
