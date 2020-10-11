@@ -37,14 +37,14 @@ pipeline {
 			sh 'docker push chika1984/myapp:4.0.0'
 		} 	
 		}
-         //stage('Run Docker image on PROD') {
-		 //steps {
-		 //sshagent(['production']) {
-		 //sh "ssh -o StrictHostKeyChecking=no ubuntu@13.233.100.158 ${dockerRun}"
-         //def dockerRun = 'docker run -p 8080:8080 -d -name myapp chika1984/myapp::3.0.0'		 
-		 //}
+         stage('Run Docker image on Stage') {
+		 steps {
+		 def dockerRun = 'docker run -p 8080:8080 -d --name myapp chika1984/myapp:4.0.0'
+		 sshagent(['staging']) {
+		 sh "ssh -o StrictHostKeyChecking=no ubuntu@172.31.37.84 ${dockerRun}"
+         }
         // sh "docker run -p 22:8080 -d -name myapp chika1984/myapp:3.0.0" 
-//}
-//}
+}
+}
 }
 }
