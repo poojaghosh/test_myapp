@@ -33,6 +33,7 @@ pipeline {
 			}
 		}	
 		stage('Push Docker image') {
+		agent { label 'master' }
 		 steps {
 			withCredentials([string(credentialsId: 'DockerHub', variable: 'dockerHub')]) {
             sh "docker login -u chika1984 -p ${dockerHub}"
@@ -41,6 +42,7 @@ pipeline {
 		} 	
 		}
          stage('Run Docker image on Stage') {
+		 agent { label 'agent' }
 		 steps {
 		 //def dockerRun = 'docker run -p 8080:8080 -d --name myapp chika1984/myapp:4.0.0'
 		 sshagent(['staging']) {
