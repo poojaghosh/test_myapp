@@ -1,14 +1,14 @@
 pipeline {
   agent any
   tools {
-        maven 'Maven'
-        jdk 'JDK'
-        dockerTool 'Docker'
+        maven 'maven'
+        jdk 'jdk'
+        //dockerTool 'Docker'
     }
     stages {
         stage ('Initialize') {
             steps {
-                bat '''
+                sh '''
                     echo "PATH = ${PATH}"
 					echo 'this **********'
                     echo "M2_HOME = ${M2_HOME}"
@@ -19,22 +19,22 @@ pipeline {
         stage ('Build Maven') {
             steps {
                 //bat 'mvn -Dmaven.test.failure.ignore=true install' 
-				bat 'mvn clean package'
+				sh 'mvn clean package'
             }
           }
 		stage('Build Docker image') {
 		  agent { label 'master' }
 		  	  
          steps {
-			bat 'docker build -t chika1984/myapp:4.0.0 .'
+			sh 'docker build -t chika1984/myapp:4.0.0 .'
 			}
 		}	
 		stage('Push Docker image') {
 		 steps {
-			withCredentials([string(credentialsId: 'Docker-Hub1', variable: 'DockerHubPwd')]) {
-            bat "docker login -u chika1984 -p ${DockerHubPwd}"
+			withCredentials([string(credentialsId: 'DockerHub', variable: 'dockerHub')]) {
+            sh "docker login -u chika1984 -p ${DockerHubPwd}"
 			}
-			bat 'docker push chika1984/myapp:4.0.0'
+			sh 'docker push chika1984/myapp:4.0.0'
 		} 	
 		}
          //stage('Run Docker image on PROD') {
