@@ -1,3 +1,6 @@
+environment {
+  def dockerRun = 'docker run -p 8080:8080 -d --name myapp chika1984/myapp:4.0.0'
+  }
 pipeline {
   agent any
   tools {
@@ -15,9 +18,7 @@ pipeline {
 					'''
             }
         }
-environment {
-  def dockerRun = 'docker run -p 8080:8080 -d --name myapp chika1984/myapp:4.0.0'
-  }
+
         stage ('Build Maven') {
             steps {
                 //bat 'mvn -Dmaven.test.failure.ignore=true install' 
