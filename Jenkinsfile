@@ -39,7 +39,7 @@ pipeline {
 			sh 'docker push chika1984/myapp:4.0.0'
 		} 	
 		}
-         stages('Run Docker image on Stage') {
+         stage('Run Docker image on Stage') {
 		 agent { label 'staging' }
 		 steps {
 		 //def dockerRun = 'docker run -p 8080:8080 -d --name myapp chika1984/myapp:4.0.0'
