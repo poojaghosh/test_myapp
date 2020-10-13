@@ -1,4 +1,4 @@
-def dockerRun = "docker run -p 8082:8080 -d --name TApp chika1984/myapp:5.0.0"
+def dockerRun = "docker run -p 8082:8080 -d --name T1App chika1984/myapp:5.0.0"
 pipeline {
   agent any
   tools {
@@ -43,7 +43,7 @@ pipeline {
 		 //agent { label 'staging' }
 		 steps {
 		 sshagent(['staging']) {
-		 sh "ssh -o StrictHostKeyChecking=no ubuntu@65.0.80.44 ${dockerRun}"
+		 sh "ssh -o StrictHostKeyChecking=no ubuntu@172.31.37.84 ${dockerRun}"
          }
     }
 }
