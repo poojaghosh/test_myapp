@@ -43,7 +43,7 @@ pipeline {
 		 //agent { label 'staging' }
 		 steps {
 		 sshagent(['staging']) {
-		 sh "ssh -o StrictHostKeyChecking=no ubuntu@13.234.232.91 ${dockerRun}"
+		 sh "ssh -o StrictHostKeyChecking=no ubuntu@65.0.80.44 ${dockerRun}"
          }
     }
 }
