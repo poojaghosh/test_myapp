@@ -1,4 +1,4 @@
-def dockerRun = "docker run -p 8082:8080 -d --name MyApp chika1984/myapp:5.0.0"
+def dockerRun = "docker run -p 8082:8080 -d --name TApp chika1984/myapp:5.0.0"
 pipeline {
   agent any
   tools {
