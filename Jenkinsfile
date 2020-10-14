@@ -1,4 +1,4 @@
-def dockerRun = "docker run -p 8080:8080 -d --name T3App chika1984/myapp:5.0.0"
+def dockerRun = "docker run -p 8085:8080 -d --name T3App chika1984/myapp:5.0.0"
 pipeline {
   agent any
   tools {
