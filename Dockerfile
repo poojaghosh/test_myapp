@@ -1,2 +1,3 @@
-FROM tomcat:8
-COPY . target/*.war /opt/tomcat/webapps/
+FROM tomcat:9.0
+COPY . target/*.war /usr/local/tomcat
+CMD ["catalina.sh", "run"]
